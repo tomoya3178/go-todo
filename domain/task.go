@@ -8,7 +8,7 @@ type Task struct {
 	contents string
 }
 
-func NewTask(name string, contents string) (*Task, error) {
+func NewTask(name, contents string) (*Task, error) {
 	task := &Task{
 		id:       uuid.New().String(),
 		name:     name,

@@ -5,7 +5,7 @@ import (
 )
 
 type TaskUseCase interface {
-	Create(name string, contents string) error
+	Create(name, contents string) error
 }
 
 type taskUseCase struct {
@@ -16,7 +16,7 @@ func NewTaskUseCase(taskRepository domain.TaskRepository) TaskUseCase {
 	return &taskUseCase{taskRepository: taskRepository}
 }
 
-func (useCase *taskUseCase) Create(name string, contents string) error {
+func (useCase *taskUseCase) Create(name, contents string) error {
 	task, err := domain.NewTask(name, contents)
 	if err != nil {
 		return err
