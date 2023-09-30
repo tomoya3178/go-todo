@@ -5,7 +5,7 @@ import (
 )
 
 type TaskUseCase interface {
-	Create(name string, contents string) (*domain.Task, error)
+	Create(name string, contents string) error
 }
 
 type taskUseCase struct {
@@ -16,14 +16,14 @@ func NewTaskUseCase(taskRepository domain.TaskRepository) TaskUseCase {
 	return &taskUseCase{taskRepository: taskRepository}
 }
 
-func (useCase *taskUseCase) Create(name string, contents string) (*domain.Task, error) {
+func (useCase *taskUseCase) Create(name string, contents string) error {
 	task, err := domain.NewTask(name, contents)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	createdTask, err := useCase.taskRepository.Create(task)
+	err = useCase.taskRepository.Create(task)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return createdTask, nil
+	return nil
 }
