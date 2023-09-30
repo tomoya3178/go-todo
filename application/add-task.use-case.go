@@ -4,7 +4,7 @@ import (
 	"go-todo/domain"
 )
 
-type TaskUsecase interface {
+type TaskUseCase interface {
 	Create(name string, contents string) (*domain.Task, error)
 }
 
@@ -12,7 +12,7 @@ type taskUseCase struct {
 	taskRepository domain.TaskRepository
 }
 
-func NewTaskUseCase(taskRepository domain.TaskRepository) TaskUsecase {
+func NewTaskUseCase(taskRepository domain.TaskRepository) TaskUseCase {
 	return &taskUseCase{taskRepository: taskRepository}
 }
 
